@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import StackGrid, {transitions} from 'react-stack-grid'
+import StackGrid, {transitions, easings} from 'react-stack-grid'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styles from '../App.css'
