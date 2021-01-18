@@ -6,8 +6,10 @@ const Signup = () => {
             display: 'flex', 
             justifyContent: 'center', 
             alignItems: 'center', 
-            height: '90vh'}}>
-            <h1>Sign-up</h1>
+            height: '90vh',
+            fontFamily:'TmonMonsori',
+            fontSize: '20px'}}>
+                test 
         </div>
     )
 }

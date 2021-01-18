@@ -7,6 +7,7 @@ import Contactus from './pages/contact-us'
 import Service from './pages/service'
 import Signup from './pages/sign-up'
 import Detail from './pages/detail'
+import HomeDetail from './pages/homedetail'
 
 
 function App(){
@@ -20,9 +21,12 @@ return (
       <Route path="/sign-up" component={Signup} />
       <Route path="/contact-us" component={Contactus} />
       <Route path="/service/:id" component={Detail} />
+      <Route path="/:id" component={HomeDetail} />
     </Switch>
   </Router>
 )
 }
+
+
 
 export default App

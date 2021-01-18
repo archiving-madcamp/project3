@@ -38,7 +38,7 @@ const acceptStyle = {
   };
   
   const thumb = {
-    display: "inline-flex",
+//    display: "inline-flex",
     borderRadius: 2,
     border: "1px solid #eaeaea",
     marginBottom: 8,
@@ -62,6 +62,8 @@ const acceptStyle = {
   };
 
 function About(props){
+    
+
     const [files, setFiles] = useState([])
     const{
         getRootProps,
@@ -182,11 +184,17 @@ function About(props){
             <button style={{
               float:'right',
               padding:"10px"
-            }} type="button" onClick={open}>
+            }} type="button">
               Open File Dialog
             </button>
           </div>
-          
+
+          <aside >
+            <h4>Files</h4>
+            <ul>{filepath}</ul>
+          </aside>
+          <aside style={thumbsContainer}>{thumbs}</aside>
+
           
         </div>
       );
@@ -196,8 +204,3 @@ function About(props){
 export default About
 
 
-// <aside style={{float:'left'}}>
-//             <h4>Files</h4>
-//             <ul>{filepath}</ul>
-//           </aside>
-//           <aside style={thumbsContainer}>{thumbs}</aside>

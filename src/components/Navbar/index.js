@@ -1,6 +1,7 @@
 import React from 'react'
 import {Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink} from './NavbarElements'
-import Typography from "@material-ui/core/Typography"
+
+import {makeStyles} from '@material-ui/core/styles'
 import mypic from '../../meme-img.png'
 /*
 import { withStyles } from "@material-ui/core"
@@ -11,7 +12,16 @@ const MemeTypography = withStyles({
     }
 })
 */
+
+const useStyles = makeStyles({
+    navfont: {
+        fontFamily:'TmonMonsori',
+        fontSize: '20px'
+    }
+})
+
 const Navbar = () => {
+    const classes = useStyles();
     return (
         <div>
             <Nav>
@@ -20,22 +30,20 @@ const Navbar = () => {
                 </NavLink>
                 <Bars />
                 <NavMenu>
-                    <NavLink to="/about" activeStyle>
-                        About
+                    <NavLink to="/about" className={classes.navfont} activeStyle >
+                        Step by Step
                     </NavLink>
-                    <NavLink to="/services" activeStyle>
-                        Services
+                    <NavLink to="/services" className={classes.navfont} activeStyle>
+                        Change to
                     </NavLink>
-                    <NavLink to="/contact-us" activeStyle>
-                        Contact us
+                    <NavLink to="/contact-us" className={classes.navfont} activeStyle>
+                        Beta
                     </NavLink>
-                    <NavLink to="/sign-up" activeStyle>
+                    <NavLink to="/sign-up" className={classes.navfont} activeStyle>
                         Sign Up
                     </NavLink>
                 </NavMenu>
-                <NavBtn>
-                <NavBtnLink to="/signin">Sign in</NavBtnLink>
-                </NavBtn>
+
             </Nav>
         </div>
     )
