@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import StackGrid, {transitions, easings} from 'react-stack-grid'
+import StackGrid, {transitions} from 'react-stack-grid'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import styles from '../App.css'
+import sizeMe from 'react-sizeme'
 
 const { scaleDown } = transitions;
+
 
 
 function Image({ id, image, mood }) {
@@ -20,7 +21,7 @@ function Image({ id, image, mood }) {
         }}
         >
         
-            <div className={styles.pic}>
+            <div>
                 <h2>testing:{id}</h2>
                 <h4>mood:{mood}</h4>
                 <img src={image} alt="test" />
@@ -37,11 +38,18 @@ Image.propTypes = {
 
 class Service extends Component {
     render(){
+        //width에 따라 columnWidth를 변경시키기 위함
+        const { 
+            size: { 
+              width
+            } 
+          } = this.props;
+
         return (
             <Link to={{
 //                pathname: `/service/${id}`
             }}>
-                <StackGrid columnWidth="25%">
+                <StackGrid columnWidth={width <= 768 ? '100%' : '33.33%'}>
                     //ex : 각각의 item
                 {Example.map(ex => 
                     <Image 
@@ -81,4 +89,4 @@ const Example = [
     
 ]
 
-export default Service
+export default sizeMe()(Service)
