@@ -3,11 +3,10 @@ import ReactDom from "react-dom"
 import { useDropzone } from "react-dropzone"
 
 const baseStyle = {
-    flex: 1,
-    display: "flex",
+    width: '100%',
+    height: "100%",
     flexDirection: "column",
     alignItems: "center",
-    padding: "20px",
     borderWidth: 2,
     borderRadius: 2,
     borderColor: "#eeeeee",
@@ -15,7 +14,8 @@ const baseStyle = {
     backgroundColor: "#fafafa",
     color: "#bdbdbd",
     outline: "none",
-    transition: "border .24s ease-in-out"
+    transition: "border .24s ease-in-out",
+    textAlign: "center"
 }
 
 const activeStyle={
@@ -120,21 +120,84 @@ function About(props){
     
       return (
         <div className="container">
-          <div {...getRootProps({ style })}>
-            <input {...getInputProps()} />
-            <p>Drag 'n' drop some files here</p>
-            <button type="button" onClick={open}>
+
+          <div style={{
+            float:'left',
+            padding:'3%',
+            marginLeft:'7%',
+            marginRight:'7%',
+            marginTop:'7%',
+            marginBottom:'1%',
+            width:'30%',
+            height:'400px',
+            backgroundColor:'powderblue',
+            fontSize: '24px'
+          }}>
+            {/* <p style={{textAlign:"center"}}><strong>이미지를 넣으세요 ^o^</strong></p> */}
+            <div {...getRootProps({ style })}>
+              <input {...getInputProps()} />
+              <p>Drag 'n' drop some files here</p>
+              <button type="button" onClick={open}>
+                Open File Dialog
+              </button>
+            </div>
+          </div>
+
+          <div style={{
+            float:'left',
+            padding:'3%',
+            marginLeft:'7%',
+            marginRight:'7%',
+            marginTop:'7%',
+            marginBottom:'1%',
+            width:'30%',
+            height:'400px',
+            backgroundColor:'aliceblue'
+          }}>
+            <p>tlqkf2</p>
+          </div>
+
+          <div style={{
+            float:'left',
+            marginLeft:'7%',
+            marginRight:'7%',
+            width:'36%',
+            fontSize: '24px',
+          }}>
+            <button style={{
+              float:'right',
+              padding:"10px"
+            }} type="button" onClick={open}>
               Open File Dialog
             </button>
           </div>
-          <aside>
-            <h4>Files</h4>
-            <ul>{filepath}</ul>
-          </aside>
-          <aside style={thumbsContainer}>{thumbs}</aside>
+
+          <div style={{
+            float:'left',
+            marginLeft:'7%',
+            marginRight:'7%',
+            width:'36%',
+            fontSize: '24px',
+          }}>
+            <button style={{
+              float:'right',
+              padding:"10px"
+            }} type="button" onClick={open}>
+              Open File Dialog
+            </button>
+          </div>
+          
+          
         </div>
       );
     }
 
 
 export default About
+
+
+// <aside style={{float:'left'}}>
+//             <h4>Files</h4>
+//             <ul>{filepath}</ul>
+//           </aside>
+//           <aside style={thumbsContainer}>{thumbs}</aside>
