@@ -1,206 +1,91 @@
-import React, { useMemo, useEffect, useState } from 'react'
-import ReactDom from "react-dom"
-import { useDropzone } from "react-dropzone"
+import React, { Component } from 'react'
+import StackGrid, {transitions} from 'react-stack-grid'
+import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import sizeMe from 'react-sizeme'
 
-const baseStyle = {
-    width: '100%',
-    height: "100%",
-    flexDirection: "column",
-    alignItems: "center",
-    borderWidth: 2,
-    borderRadius: 2,
-    borderColor: "#eeeeee",
-    borderStyle: "dashed",
-    backgroundColor: "#fafafa",
-    color: "#bdbdbd",
-    outline: "none",
-    transition: "border .24s ease-in-out",
-    textAlign: "center"
-}
 
-const activeStyle={
-    borderColor: "#2196f3"
-}
 
-const acceptStyle = {
-    borderColor: "#00e676"
-  };
-  
-  const rejectStyle = {
-    borderColor: "#ff1744"
-  };
-  
-  const thumbsContainer = {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    marginTop: 16
-  };
-  
-  const thumb = {
-//    display: "inline-flex",
-    borderRadius: 2,
-    border: "1px solid #eaeaea",
-    marginBottom: 8,
-    marginRight: 8,
-    width: "auto",
-    height: 200,
-    padding: 4,
-    boxSizing: "border-box"
-  };
-  
-  const thumbInner = {
-    display: "flex",
-    minWidth: 0,
-    overflow: "hidden"
-  };
-  
-  const img = {
-    display: "block",
-    width: "auto",
-    height: "100%"
-  };
 
-function About(props){
-    
-
-    const [files, setFiles] = useState([])
-    const{
-        getRootProps,
-        getInputProps,
-        isDragActive,
-        isDragAccept,
-        isDragReject,
-        acceptedFiles,
-        open
-    } = useDropzone({
-        accept: "image/*",
-        noClick: true,
-        noKeyboard: true,
-        onDrop: acceptedFiles => {
-            setFiles(
-                acceptedFiles.map(file =>
-                    Object.assign(file, {
-                        preview: URL.createObjectURL(file)
-                    }))
-            )
-        }
-
-    })
-
-    const style = useMemo(
-        () => ({
-          ...baseStyle,
-          ...(isDragActive ? activeStyle : {}),
-          ...(isDragAccept ? acceptStyle : {}),
-          ...(isDragReject ? rejectStyle : {})
-        }),
-        [isDragActive, isDragReject]
-      );
-    
-      const thumbs = files.map(file => (
-        <div style={thumb} key={file.name}>
-          <div style={thumbInner}>
-            <img src={file.preview} style={img} />
-          </div>
-        </div>
-      ));
-    
-      useEffect(
-        () => () => {
-          // Make sure to revoke the data uris to avoid memory leaks
-          files.forEach(file => URL.revokeObjectURL(file.preview));
-        },
-        [files]
-      );
-    
-      const filepath = acceptedFiles.map(file => (
-        <li key={file.path}>
-          {file.path} - {file.size} bytes
-        </li>
-      ));
-    
-      return (
-        <div className="container">
-
-          <div style={{
-            float:'left',
-            padding:'3%',
-            marginLeft:'7%',
-            marginRight:'7%',
-            marginTop:'7%',
-            marginBottom:'1%',
-            width:'30%',
-            height:'400px',
-            backgroundColor:'powderblue',
-            fontSize: '24px'
-          }}>
-            {/* <p style={{textAlign:"center"}}><strong>이미지를 넣으세요 ^o^</strong></p> */}
-            <div {...getRootProps({ style })}>
-              <input {...getInputProps()} />
-              <p>Drag 'n' drop some files here</p>
-              <button type="button" onClick={open}>
-                Open File Dialog
-              </button>
+function Image({ id, image, mood }) {
+    return (
+        <Link
+        to={{
+            pathname: `/service/${id}`,
+            state: {
+                id: id,
+                image: image,
+                mood: mood
+            }
+        }}
+        >
+        
+            <div>
+                <h2>testing:{id}</h2>
+                <h4>mood:{mood}</h4>
+                <img src={image} alt="test" width="400px" height="400px"/>
             </div>
-          </div>
+        </Link>
+    )
+}
 
-          <div style={{
-            float:'left',
-            padding:'3%',
-            marginLeft:'7%',
-            marginRight:'7%',
-            marginTop:'7%',
-            marginBottom:'1%',
-            width:'30%',
-            height:'400px',
-            backgroundColor:'aliceblue'
-          }}>
-            <p>tlqkf2</p>
-          </div>
+Image.propTypes = {
+    id: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    mood: PropTypes.string.isRequired
+}
 
-          <div style={{
-            float:'left',
-            marginLeft:'7%',
-            marginRight:'7%',
-            width:'36%',
-            fontSize: '24px',
-          }}>
-            <button style={{
-              float:'right',
-              padding:"10px"
-            }} type="button" onClick={open}>
-              Open File Dialog
-            </button>
-          </div>
+class Service extends Component {
+    render(){
+        //width에 따라 columnWidth를 변경시키기 위함
+        const { 
+            size: { 
+              width
+            } 
+          } = this.props;
 
-          <div style={{
-            float:'left',
-            marginLeft:'7%',
-            marginRight:'7%',
-            width:'36%',
-            fontSize: '24px',
-          }}>
-            <button style={{
-              float:'right',
-              padding:"10px"
-            }} type="button">
-              Open File Dialog
-            </button>
-          </div>
+        return (
+            <Link to={{
+//                pathname: `/service/${id}`
+            }}>
+                <StackGrid columnWidth={width <= 768 ? '100%' : '25%'}>
+                    //ex : 각각의 item
+                {Example.map(ex => 
+                    <Image 
+                    key={ex.image} 
+                    image={ex.image} 
+                    id={ex.id} mood={ex.mood} ></Image>    
+                )}
+            </StackGrid>
 
-          <aside >
-            <h4>Files</h4>
-            <ul>{filepath}</ul>
-          </aside>
-          <aside style={thumbsContainer}>{thumbs}</aside>
-
-          
-        </div>
-      );
+            </Link>
+        )
     }
+}
 
+const Example = [
+    {
+        id: "1",
+        image: "https://c5.staticflickr.com/9/8768/28941110956_b05ab588c1_b.jpg",
+        mood: "happy"
+    },
+    {
+        id: "2",
+        image: "https://c3.staticflickr.com/9/8583/28354353794_9f2d08d8c0_b.jpg",
+        mood: "sad" 
+    },
+    {
+        id: "3",
+        image: "https://c7.staticflickr.com/9/8569/28941134686_d57273d933_b.jpg",
+        mood: "soso"
+    },
+    {
+        id: "4",
+        image: "https://c6.staticflickr.com/9/8520/28357073053_cafcb3da6f_b.jpg",
+        mood: "bad"
+    }
+    
+    
+]
 
-export default About
-
-
+export default sizeMe()(Service)

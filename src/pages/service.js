@@ -24,7 +24,7 @@ function Image({ id, image, mood }) {
             <div>
                 <h2>testing:{id}</h2>
                 <h4>mood:{mood}</h4>
-                <img src={image} alt="test" />
+                <img src={image} alt="test" width="400px" height="400px"/>
             </div>
         </Link>
     )
@@ -49,7 +49,7 @@ class Service extends Component {
             <Link to={{
 //                pathname: `/service/${id}`
             }}>
-                <StackGrid columnWidth={width <= 768 ? '100%' : '33.33%'}>
+                <StackGrid columnWidth={width <= 768 ? '100%' : '25%'}>
                     //ex : 각각의 item
                 {Example.map(ex => 
                     <Image 

@@ -7,7 +7,7 @@ const Signup = () => {
             justifyContent: 'center', 
             alignItems: 'center', 
             height: '90vh',
-            fontFamily:'TmonMonsori',
+            fontFamily: 'Spoqa Han Sans Neo',
             fontSize: '20px'}}>
                 test 
         </div>

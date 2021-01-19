@@ -15,8 +15,8 @@ const MemeTypography = withStyles({
 
 const useStyles = makeStyles({
     navfont: {
-        fontFamily:'TmonMonsori',
-        fontSize: '20px'
+        fontFamily: 'Spoqa Han Sans Neo',
+        fontSize: '15px'
     }
 })
 
@@ -25,21 +25,21 @@ const Navbar = () => {
     return (
         <div>
             <Nav>
-                <NavLink to="/">
+                <NavLink to="/" style={{marginTop: '3px'}}>
                     <img src={mypic} height="30dp" width= "80px" alt="Test"/>
                 </NavLink>
                 <Bars />
                 <NavMenu>
-                    <NavLink to="/about" className={classes.navfont} activeStyle >
+                    <NavLink to="/about" className={classes.navfont} style={{marginTop: '15px'}} activeStyle >
                         Step by Step
                     </NavLink>
-                    <NavLink to="/services" className={classes.navfont} activeStyle>
+                    <NavLink to="/services" className={classes.navfont} style={{marginTop: '15px'}} activeStyle>
                         Change to
                     </NavLink>
-                    <NavLink to="/contact-us" className={classes.navfont} activeStyle>
+                    <NavLink to="/contact-us" className={classes.navfont } style={{marginTop: '15px'}} activeStyle>
                         Beta
                     </NavLink>
-                    <NavLink to="/sign-up" className={classes.navfont} activeStyle>
+                    <NavLink to="/sign-up" className={classes.navfont} style={{marginTop: '15px'}} activeStyle>
                         Sign Up
                     </NavLink>
                 </NavMenu>
