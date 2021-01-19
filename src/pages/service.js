@@ -1,92 +1,28 @@
-import React, { Component } from 'react'
-import StackGrid, {transitions} from 'react-stack-grid'
-import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
-import sizeMe from 'react-sizeme'
-
-const { scaleDown } = transitions;
+import React from 'react'
+import {Grid} from '@material-ui/core';
+import {makeStyles} from '@material-ui/core/styles'
+import Card from './Card'
 
 
+const useStyles = makeStyles({
+    gridContainer: {
+        paddingLeft: '20px',
+        paddingRight: '20px'
+    },
+    card: {
+        width: '200px',
+        height: '200px'
+    }
+})
 
-function Image({ id, image, mood }) {
+function Service() {
+    const classes = useStyles();
     return (
-        <Link
-        to={{
-            pathname: `/service/${id}`,
-            state: {
-                id: id,
-                image: image,
-                mood: mood
-            }
-        }}
-        >
-        
-            <div>
-                <h2>testing:{id}</h2>
-                <h4>mood:{mood}</h4>
-                <img src={image} alt="test" width="400px" height="400px"/>
-            </div>
-        </Link>
+        //grid container를 사용하면 전체를 차지하지 않게 된다 gutter 만들때 사용
+        <Grid container="container" className={classes.gridContainer} spacing={4}>            
+                <Card className={classes.card}/>
+        </Grid>
     )
 }
 
-Image.propTypes = {
-    id: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    mood: PropTypes.string.isRequired
-}
-
-class Service extends Component {
-    render(){
-        //width에 따라 columnWidth를 변경시키기 위함
-        const { 
-            size: { 
-              width
-            } 
-          } = this.props;
-
-        return (
-            <Link to={{
-//                pathname: `/service/${id}`
-            }}>
-                <StackGrid columnWidth={width <= 768 ? '100%' : '25%'}>
-                    //ex : 각각의 item
-                {Example.map(ex => 
-                    <Image 
-                    key={ex.image} 
-                    image={ex.image} 
-                    id={ex.id} mood={ex.mood} ></Image>    
-                )}
-            </StackGrid>
-
-            </Link>
-        )
-    }
-}
-
-const Example = [
-    {
-        id: "1",
-        image: "https://c5.staticflickr.com/9/8768/28941110956_b05ab588c1_b.jpg",
-        mood: "happy"
-    },
-    {
-        id: "2",
-        image: "https://c3.staticflickr.com/9/8583/28354353794_9f2d08d8c0_b.jpg",
-        mood: "sad"
-    },
-    {
-        id: "3",
-        image: "https://c7.staticflickr.com/9/8569/28941134686_d57273d933_b.jpg",
-        mood: "soso"
-    },
-    {
-        id: "4",
-        image: "https://c6.staticflickr.com/9/8520/28357073053_cafcb3da6f_b.jpg",
-        mood: "bad"
-    }
-    
-    
-]
-
-export default sizeMe()(Service)
+export default Service
