@@ -38,17 +38,12 @@ Image.propTypes = {
 class Service extends Component {
     render(){
         //width에 따라 columnWidth를 변경시키기 위함
-        const { 
-            size: { 
-              width
-            } 
-          } = this.props;
 
         return (
             <Link to={{
 //                pathname: `/service/${id}`
             }}>
-                <StackGrid columnWidth={width <= 768 ? '100%' : '25%'}>
+                <StackGrid columnWidth='25%'>
                     //ex : 각각의 item
                 {Example.map(ex => 
                     <Image 
@@ -88,4 +83,4 @@ const Example = [
     
 ]
 
-export default sizeMe()(Service)
+export default Service
